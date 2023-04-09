@@ -390,7 +390,7 @@ class LRP(GradientAttribution):
         self.model.load_state_dict(self._original_state_dict)  # type: ignore
 
     def _restore_model(self) -> None:
-        self._restore_state()
+        # self._restore_state()
         self._remove_backward_hooks()
         self._remove_forward_hooks()
         self._remove_rules()
