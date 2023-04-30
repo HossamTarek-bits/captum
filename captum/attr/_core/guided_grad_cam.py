@@ -73,6 +73,7 @@ class GuidedGradCam(GradientAttribution):
         additional_forward_args: Any = None,
         interpolate_mode: str = "nearest",
         attribute_to_layer_input: bool = False,
+        grad_cam_only=False
     ) -> TensorOrTupleOfTensorsGeneric:
         r"""
         Args:
@@ -205,7 +206,7 @@ class GuidedGradCam(GradientAttribution):
         for i in range(len(inputs)):
             try:
                 output_attr.append(
-                    guided_backprop_attr[i]
+                    guided_backprop_attr[i] if not grad_cam_only else 1
                     * LayerAttribution.interpolate(
                         grad_cam_attr,
                         inputs[i].shape[2:],
